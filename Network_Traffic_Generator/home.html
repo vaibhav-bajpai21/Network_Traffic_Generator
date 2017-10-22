@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body  {
+    background-image: url("img/background.jpg");
+    background-size: 800px 1100px;
+}
+h1 {text-align:center;}
+div {
+    background-color: #3b5998;
+    width: 500px;
+    
+    padding: 25px;
+    margin: 25px;
+}
+</style>
+</head>
+<body>
+
+
+<center>
+<div>
+<h1 style="font-family:verdana">IPv4 Traffic Generator</h1>
+<br><br>
+<form action="check.php" method="post" style="font-family:verdana">
+
+Source IPv4 Address: <input type="text" name="sip"><br><br>
+
+Destination IPv4 Address: <input type="text" name="dip"><br><br>
+
+Protocol:
+<select name="protocol">
+  <option value="tcp" onclick="myFunctionShow()">TCP</option>
+  <option value="udp" onclick="myFunctionShow()">UDP</option>
+  <option value="icmp" onclick="myFunctionHide()">ICMP</option>
+</select>
+<br> 
+
+<p id="souj1">Source Port:</p>
+<select name="ssport" id="souj2">
+	<option value="ftp">FTP</option>
+	<option value="ssh">SSH</option>
+	<option value="telnet">TELNET</option>
+	<option value="dns">DNS</option>
+	<option value="mail">MAIL</option>
+	<option value="voip">VoIP</option>
+	<option value="http">HTTP</option>
+	<option value="https">HTTPS</option>
+	<option value="specify">SPECIFY</option>
+</select>
+
+<input type="text" name="sport" id="souj3"><br>
+
+<p id="desj1">Destination Port:</p>
+<select name="ddport" id="desj2">
+  <option value="ftp">FTP</option>
+	<option value="ssh">SSH</option>
+	<option value="telnet">TELNET</option>
+	<option value="dns">DNS</option>
+	<option value="mail">MAIL</option>
+	<option value="voip">VoIP</option>
+	<option value="http">HTTP</option>
+	<option value="https">HTTPS</option>
+	<option value="dspecify">SPECIFY</option>
+</select>
+
+<input type="text" name="dport" id="douj3">
+<br>
+
+<p id="nopj1">Number of packets:</p>
+<input type="text" name="nop" id="nopj2">
+
+<select name="num_pac">
+ 	<option value="cont" onclick="nophide()">CONTINUOUS</option>
+	<option value="noncont" onclick="nopshow()">NON-CONTINUOUS</option>
+</select>
+<br>
+
+<p id="lenj1">Payload Length per Packet:</p>
+<input type="text" name="len" id="lenj2">
+<select name="plength">
+  <option value="min" onclick="lenhide()">MIN(8 BYTES)</option>
+  <option value="max" onclick="lenhide()">MAX(512 BYTES)</option>
+  <option value="define" onclick="lenshow()">DEFINE</option>
+</select>
+<br>
+<br>
+
+<br>
+
+Interpacket gap: <input type="text" name="pgap">
+<br>
+
+Payload Option:
+<input type="radio" name="rnd" id="random" value="rand" onclick="rnd_dis();" />Random Bytes
+<input type="radio" name="rnd" id="specific"  value="spec" checked="checked" onclick="rnd_en();" />Define My Own
+<br>
+<br>
+
+<input type="radio" name="datatyp" id="ascii" value="ascii" checked="checked" /> Ascii 
+<input type="radio" name="datatyp" id="hex"  value="hex" /> Hex 
+<br>
+<br>
+						
+
+<textarea type="text" name="payload" id="payload" rows="10" cols="40" />                                                                  </textarea><br>
+
+<input type="submit" value="Send">
+
+
+</form>
+<form  action="destroy.php">
+<input type="submit" name="stop" size="18" value="Stop"/>
+</form>
+</div>
+</center>
+<script>
+function rnd_dis() {
+    document.getElementById("ascii").disabled = true;	
+    document.getElementById("hex").disabled = true;	
+    document.getElementById("payload").disabled = true;	
+}
+function rnd_en() {
+    document.getElementById("ascii").disabled = false;	
+    document.getElementById("hex").disabled = false;	
+    document.getElementById("payload").disabled = false;	
+}
+
+function myFunctionShow() {
+   document.getElementById("souj1").style.display="block";
+   document.getElementById("souj2").style.display="block";
+   document.getElementById("desj1").style.display="block";
+   document.getElementById("desj2").style.display="block";
+   document.getElementById("souj3").style.display="block";
+   document.getElementById("douj3").style.display="block";
+}
+function myFunctionHide() {
+    document.getElementById("souj1").style.display = "none";	
+    document.getElementById("souj2").style.display = "none";
+    document.getElementById("desj1").style.display="none";
+    document.getElementById("desj2").style.display="none";
+    document.getElementById("souj3").style.display="none";
+    document.getElementById("douj3").style.display="none";
+    
+}
+function nopshow() {
+    document.getElementById("nopj1").style.display="block";
+    document.getElementById("nopj2").style.display="block";
+}
+function nophide() {
+    document.getElementById("nopj1").style.display="none";
+    document.getElementById("nopj2").style.display="none";
+}
+function lenshow() {
+    document.getElementById("lenj1").style.display="block";
+    document.getElementById("lenj2").style.display="block";
+}
+function lenhide() {
+    document.getElementById("lenj1").style.display="none";
+    document.getElementById("lenj2").style.display="none";
+}
+
+</script>
+</body>
+</html>
